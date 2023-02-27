@@ -85,14 +85,14 @@ class PluginApp {
     sendPacket (packet) {
         this.client.send(packet.toBuffer(), this.config.hostport, this.config.host);
     }
-    broadcastChat (text, client) {
+    broadcastChat (text) {
         const temp = br.writeStringW(text);
         const packet = buffer.fromSize(temp.length + 1);
         packet.writeUInt8(protocols.BROADCAST_CHAT, 0);
         packet.writeBuffer(temp, 1);
         this.sendPacket(packet);
     }
-    sendChat (car_id, text, client) {
+    sendChat (car_id, text) {
         const temp = br.writeStringW(text);
         const packet = buffer.fromSize(temp.length + 2);
         packet.writeUInt8(protocols.SEND_CHAT, 0);
