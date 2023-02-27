@@ -27,4 +27,4 @@ module.exports = {
     NEXT_SESSION: 207,
     RESTART_SESSION: 208,
     ADMIN_COMMAND: 209, // Send message plus a stringW with the command
-}
+};

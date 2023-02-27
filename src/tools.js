@@ -23,7 +23,7 @@ class vector3f {
         this.z = z;
     }
     toString () {
-        return `[${this.x}, ${this.y}, ${this.z}]`
+        return `[${this.x}, ${this.y}, ${this.z}]`;
     }
 }
 
@@ -38,4 +38,4 @@ module.exports = {
             }
         }
     }
-}
+};
