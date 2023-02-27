@@ -74,13 +74,7 @@ class PluginApp {
             }
             command(data);
         });
-        this.client.bind(port);
-        
-        var packet = buffer.fromSize(3);
-        packet.writeUInt8(protocols.GET_SESSION_INFO);
-        packet.writeInt16LE(-1);
-        this.client.send(packet.toBuffer(), 12000, '127.0.0.1');
-            }
+    }
     on (event, callback) {
         if (!Object.values(protocols).includes(event)) throw new tools.error.eventNotFound('There is no such event');
         this.listeners[String(event)] = callback;
