@@ -76,6 +76,7 @@ class PluginApp {
             }
             command(data);
         });
+        this.client.bind(port);
     }
     on (event, callback) {
         if (!Object.values(protocols).includes(event)) throw new tools.error.eventNotFound('There is no such event');
