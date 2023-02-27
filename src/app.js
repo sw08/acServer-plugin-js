@@ -89,5 +89,6 @@ class PluginApp {
 }
 
 module.exports = {
-    PluginApp: PluginApp
+    PluginApp: PluginApp,
+    protocols: protocols
 }
