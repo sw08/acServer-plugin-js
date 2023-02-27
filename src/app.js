@@ -10,7 +10,9 @@ const br = new tools.byteReader();
 class PluginApp {
     constructor (config={}) {
         this.config = {
-            get_leaderboard: false
+            get_leaderboard: false,
+            hostport: 12000,
+            hostname: '127.0.0.1'
         };
         for (const key of Object.keys(config)) {
             this.config[key] = config[key];
@@ -79,9 +81,63 @@ class PluginApp {
         if (!Object.values(protocols).includes(event)) throw new tools.error.eventNotFound('There is no such event');
         this.listeners[String(event)] = callback;
     }
+    sendPacket (packet) {
+        this.client.send(packet.toBuffer(), this.config.hostport, this.config.host);
+    }
+    broadcastChat (text, client) {
+        const temp = br.writeStringW(text);
+        const packet = buffer.fromSize(temp.length + 1);
+        packet.writeUInt8(protocols.BROADCAST_CHAT, 0);
+        packet.writeBuffer(temp, 1);
+        this.sendPacket(packet);
+    }
+    sendChat (car_id, text, client) {
+        const temp = br.writeStringW(text);
+        const packet = buffer.fromSize(temp.length + 2);
+        packet.writeUInt8(protocols.SEND_CHAT, 0);
+        packet.writeUInt8(car_id, 1);
+        packet.writeBuffer(temp, 2);
+        this.sendPacket(packet);
+    }
+    kick (car_id) {
+        const packet = buffer.fromSize(2);
+        packet.writeUInt8(protocols.KICK_USER, 0);
+        packet.writeUInt8(car_id, 1);
+        this.sendPacket(packet);
+    }
+    enableRealtimeReport (interval) {
+        const packet = buffer.fromSize(3);
+        packet.writeUInt8(protocols.REALTIMEPOS_INTERVAL, 0);
+        packet.writeUInt16(interval, 1);
+        this.sendPacket(packet);
+    }
+    getCarInfo (car_id) {
+        const packet = buffer.fromSize(2);
+        packet.writeUInt8(protocols.GET_CAR_INFO, 0);
+        packet.writeUInt8(car_id, 1);
+        this.sendPacket(packet);
+    }
+    getSessionInfo (session_index=-1) {
+        const packet = buffer.fromSize(3);
+        packet.writeUInt8(protocols.GET_SESSION_INFO, 0);
+        packet.writeInt16LE(session_index, 1);
+        this.sendPacket(packet);
+    }
+    setSessionInfo (session_index, name, type, laps, time, wait_time) {
+        const temp = br.writeStringW(name);
+        const packet = buffer.fromSize(15 + temp.length);
+        packet.writeInt8(protocols.SET_SESSION_INFO, 0);
+        packet.writeInt8(session_index, 1);
+        br.writeBuffer(temp, 2);
+        packet.writeInt8(type, 2 + temp.length);
+        packet.writeUInt32LE(laps, 3 + temp.length);
+        packet.writeUInt32LE(time, 4 + temp.length);
+        packet.writeUInt32LE(wait_time, 11 + temp.length);
+        this.sendPacket(packet);
+    }
 }
 
 module.exports = {
     PluginApp: PluginApp,
-    PROTOCOLS: protocols
+    PROTOCOLS: protocols,
 };
