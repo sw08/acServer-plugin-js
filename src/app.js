@@ -142,4 +142,7 @@ class PluginApp {
 module.exports = {
     PluginApp: PluginApp,
     PROTOCOLS: protocols,
+    errors: {
+        eventNotFound: tools.eventNotFound
+    }
 };
