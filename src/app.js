@@ -73,6 +73,8 @@ class PluginApp {
                 data.push(buf.readFloatLE());
                 data.push(new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE()));
                 data.push(new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE()));
+            } else if (cmd === protocols.CAR_INFO) {
+                data[1] = data[1] != 0;
             }
             command(data);
         });
