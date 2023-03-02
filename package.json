@@ -17,7 +17,7 @@
   ],
   "main": "src/app.js",
   "name": "acserver-plugin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "yswysw",
   "license": "LGPL-3.0-or-later",
   "description": "",
