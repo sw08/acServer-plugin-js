@@ -35,7 +35,7 @@ app.on(server.PROTOCOLS.CAR_INFO, (data) => {
 app.run(12001);
 ```
 
-[More Description](https://github.com/sw08/acServer-plugin-js/tree/main/examples)
+[More Description](https://github.com/sw08/acServer-plugin-js/tree/main/docs)
 
 ### License
 This project is licensed under the [GPL 3.0 License](https://github.com/sw08/acServer-plugin-js/blob/main/LICENSE).
