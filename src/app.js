@@ -65,7 +65,7 @@ class PluginApp {
                     data.push(buf.readUInt8());
                     data.push(buf.ReadUInt32());
                     data.push(buf.ReadUInt16());
-                    data.push(buf.readUInt8());
+                    data.push(buf.readUInt8() != 0);
                 }
                 data.push(buf.readFloatLE());
             } else if (cmd === protocols.CLIENT_EVENT && data[0] === protocols.CE_COLLISION_WITH_CAR) {
