@@ -19,7 +19,7 @@ class PluginApp {
         this.client = udp.createSocket('udp4');
         this.listeners = {};
     }
-    run (port) {
+    run (port=12001) {
         this.client.on('message', (msg, info) => {
             const buf = buffer.fromBuffer(msg);
             const cmd = buf.readUInt8();
