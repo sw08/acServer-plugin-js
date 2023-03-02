@@ -10,7 +10,6 @@ const br = new tools.byteReader();
 class PluginApp {
     constructor (config={}) {
         this.config = {
-            get_leaderboard: false,
             hostport: 12000,
             hostname: '127.0.0.1'
         };
