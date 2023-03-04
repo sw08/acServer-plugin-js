@@ -128,10 +128,10 @@ class PluginApp {
     setSessionInfo (session_index, name, type, laps, time, wait_time) {
         const temp = br.writeStringW(name);
         const packet = buffer.fromSize(15 + temp.length);
-        packet.writeInt8(protocols.SET_SESSION_INFO, 0);
-        packet.writeInt8(session_index, 1);
+        packet.writeUInt8(protocols.SET_SESSION_INFO, 0);
+        packet.writeUInt8(session_index, 1);
         br.writeBuffer(temp, 2);
-        packet.writeInt8(type, 2 + temp.length);
+        packet.writeUInt8(type, 2 + temp.length);
         packet.writeUInt32LE(laps, 3 + temp.length);
         packet.writeUInt32LE(time, 4 + temp.length);
         packet.writeUInt32LE(wait_time, 11 + temp.length);
