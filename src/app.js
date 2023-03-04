@@ -130,7 +130,7 @@ class PluginApp {
         const packet = buffer.fromSize(15 + temp.length);
         packet.writeUInt8(protocols.SET_SESSION_INFO, 0);
         packet.writeUInt8(session_index, 1);
-        br.writeBuffer(temp, 2);
+        packet.writeBuffer(temp, 2);
         packet.writeUInt8(type, 2 + temp.length);
         packet.writeUInt32LE(laps, 3 + temp.length);
         packet.writeUInt32LE(time, 4 + temp.length);
