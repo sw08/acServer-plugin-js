@@ -98,6 +98,7 @@ Detailed Description
 * Triggered when the server sent session information
 * Only received after `app.getSessionInfo()` was called
 * The unit of `time from session's start` is milliseconds
+* Session type: 1 practice, 2 qualify, 3 race
 * Data format: udp protocol version, the index of requested session, the index of current session, the number of sessions in the server, server name, track name, track config, session name, session type, session time, session laps, wait time, ambient temperature, road temperature, weather graphics, time from session's start
   `[Number, Number, Number, Number, String, String, String, String, String, Number, Number, Number, Number, Number, Number, String, Number]`
 

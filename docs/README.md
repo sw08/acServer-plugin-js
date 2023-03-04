@@ -102,7 +102,7 @@ After follows `server.PROTOCOLS.SESSION_INFO` event.
 
 * `session_index`: The index of the session to configure.
 * `name`: The name of the session.
-* `type`: The type of the session. (I have no idea what it is)
+* `type`: The type of the session. (1: practice, 2: qualify, 3: race)
 * `laps`: The number of laps to end the session.
 * `time`: The time to end the session.
 * `wait_time`: The time to wait for low rankers.
