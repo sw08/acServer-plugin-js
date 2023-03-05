@@ -49,7 +49,7 @@ class PluginApp {
                             data[params[counter]] = buf.readUInt32LE();
                             break;
                         case 'uint16':
-                            data[params[counter]] = buf.readUInt16BE();
+                            data[params[counter]] = buf.readUInt16LE();
                             break;
                         case 'uint8':
                             data[params[counter]] = buf.readUInt8();
@@ -69,8 +69,8 @@ class PluginApp {
                 for (var i = 0; i < buf.readUInt8(); i++) {
                     data.cars.push({
                         'car_id': buf.readUInt8(),
-                        'time': buf.ReadUInt32(),
-                        'laps': buf.ReadUInt16(),
+                        'time': buf.readUInt32LE(),
+                        'laps': buf.ReadUInt16LE(),
                         'completed': buf.readUInt8() != 0
                     });
                 }
@@ -118,7 +118,7 @@ class PluginApp {
     enableRealtimeReport (interval) {
         const packet = buffer.fromSize(3);
         packet.writeUInt8(protocols.REALTIMEPOS_INTERVAL, 0);
-        packet.writeUInt16(interval, 1);
+        packet.writeUInt16LE(interval, 1);
         this.sendPacket(packet);
     }
     getCarInfo (car_id) {
