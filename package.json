@@ -17,7 +17,7 @@
   ],
   "main": "src/app.js",
   "name": "acserver-plugin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "yswysw",
   "license": "MIT",
   "description": "",
