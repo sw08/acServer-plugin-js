@@ -69,7 +69,7 @@ class PluginApp {
                 for (var i = 0; i < buffer.readUInt8(); i++) {
                     data.cars.push({
                         'car_id': buf.readUInt8(),
-                        'laptime': buf.ReadUInt32(),
+                        'time': buf.ReadUInt32(),
                         'laps': buf.ReadUInt16(),
                         'completed': buf.readUInt8() != 0
                     });
