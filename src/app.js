@@ -70,7 +70,7 @@ class PluginApp {
                     data.cars.push({
                         'car_id': buf.readUInt8(),
                         'time': buf.readUInt32LE(),
-                        'laps': buf.ReadUInt16LE(),
+                        'laps': buf.readUInt16LE(),
                         'completed': buf.readUInt8() != 0
                     });
                 }
