@@ -35,5 +35,3 @@ params[protocols.NEW_SESSION] = params[protocols.SESSION_INFO];
 for (const key of Object.keys(params)) params[key] = params[key].split('/')
 
 module.exports = {query: query, params: params};
-
-console.log(module.exports)
