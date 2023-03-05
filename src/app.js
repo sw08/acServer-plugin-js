@@ -66,7 +66,7 @@ class PluginApp {
             }
             if (cmd === protocols.LAP_COMPLETED) {
                 data['cars'] = [];
-                for (var i = 0; i < buffer.readUInt8(); i++) {
+                for (var i = 0; i < buf.readUInt8(); i++) {
                     data.cars.push({
                         'car_id': buf.readUInt8(),
                         'time': buf.ReadUInt32(),
