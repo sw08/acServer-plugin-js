@@ -2,7 +2,9 @@ const udp = require('dgram');
 const buffer = require('smart-buffer').SmartBuffer;
 const tools = require('./tools');
 const protocols = require('./protocols');
-const execute_query = require('./query');
+const query_data = require('./query');
+const execute_query = query_data.query;
+const execute_params = query_data.params;
 
 const br = new tools.byteReader();
 
@@ -26,54 +28,60 @@ class PluginApp {
             const command = this.listeners[String(cmd)];
             if (command === undefined) return;
             const query = execute_query[cmd];
-            const data = [];
+            const params = execute_params[cmd];
+            const data = {};
             var q;
+            var counter = 0;
             for (var i = 0; i < query.length; i++) {
                 q = (typeof query[i]) === 'string' ? [query[i], 1] : query[i];
                 for (var j = 0; j < q[1]; j++) {
                     switch (q[0]) {
                         case 'v3f':
-                            data.push(new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE()));
+                            data[params[counter]] = new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE());
                             break;
                         case 'f':
-                            data.push(buf.readFloatLE());
+                            data[params[counter]] = buf.readFloatLE();
                             break;
                         case 'int32':
-                            data.push(buf.readInt32LE());
+                            data[params[counter]] = buf.readInt32LE();
                             break;
                         case 'uint32':
-                            data.push(buf.readUInt32LE());
+                            data[params[counter]] = buf.readUInt32LE();
                             break;
                         case 'uint16':
-                            data.push(buf.readUInt16BE());
+                            data[params[counter]] = buf.readUInt16BE();
                             break;
                         case 'uint8':
-                            data.push(buf.readUInt8());
+                            data[params[counter]] = buf.readUInt8();
                             break;
                         case 'strw':
-                            data.push(br.readStringW(buf));
+                            data[params[counter]] = br.readStringW(buf);
                             break;
                         case 'str':
-                            data.push(br.readString(buf));
+                            data[params[counter]] = br.readString(buf);
                             break;
                     }
+                    counter++;
                 }
             }
             if (cmd === protocols.LAP_COMPLETED) {
+                data['cars'] = [];
                 for (var i = 0; i < buffer.readUInt8(); i++) {
-                    data.push(buf.readUInt8());
-                    data.push(buf.ReadUInt32());
-                    data.push(buf.ReadUInt16());
-                    data.push(buf.readUInt8() != 0);
+                    data.cars.push({
+                        'car_id': buf.readUInt8(),
+                        'laptime': buf.ReadUInt32(),
+                        'laps': buf.ReadUInt16(),
+                        'completed': buf.readUInt8() != 0
+                    });
                 }
-                data.push(buf.readFloatLE());
-            } else if (cmd === protocols.CLIENT_EVENT && data[0] === protocols.CE_COLLISION_WITH_CAR) {
-                data.push(buf.readUInt8());
-                data.push(buf.readFloatLE());
-                data.push(new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE()));
-                data.push(new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE()));
+                data['grip_level'] = buf.readFloatLE();
+            } else if (cmd === protocols.CLIENT_EVENT) {
+                if (data[0] === protocols.CE_COLLISION_WITH_CAR) data['other_car_id'] = buf.readUInt8();
+                data['speed'] = buf.readFloatLE();
+                data['world_position'] = new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE());
+                data['relative_position'] = new tools.vector3f(buf.readFloatLE(), buf.readFloatLE(), buf.readFloatLE());
             } else if (cmd === protocols.CAR_INFO) {
-                data[1] = data[1] != 0;
+                data['connected'] = data['connected'] != 0;
             }
             command(data);
         });
