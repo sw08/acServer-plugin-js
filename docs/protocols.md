@@ -114,23 +114,22 @@ Triggered when current session ended.
 * `cuts`: how many cuts the driver did in the lap
   type: Number
 * `cars`: all cars in the leaderboard.
-  type: Array
+  type: Object
   example:
   ```js
-  [
-    {
-      car_id: 0,
+  {
+    '0': {
       time: 140363, // 2:20.363
       laps: 5,
       completed: true,
     },
-    {
-      car_id: 1,
+    '1': {
       time: 142504, // 2:22.504
       laps: 10,
       completed: false,
     },
-  ]
+    ...
+  }
   ```
 * `grip_level`: track's grip level in percent
   type: Number
