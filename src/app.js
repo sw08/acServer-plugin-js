@@ -65,14 +65,13 @@ class PluginApp {
                 }
             }
             if (cmd === protocols.LAP_COMPLETED) {
-                data['cars'] = [];
+                data['cars'] = {};
                 for (var i = 0; i < buf.readUInt8(); i++) {
-                    data.cars.push({
-                        'car_id': buf.readUInt8(),
+                    data.cars[buf.readUInt8()] = {
                         'time': buf.readUInt32LE(),
                         'laps': buf.readUInt16LE(),
                         'completed': buf.readUInt8() != 0
-                    });
+                    };
                 }
                 data['grip_level'] = buf.readFloatLE();
             } else if (cmd === protocols.CLIENT_EVENT) {
