@@ -178,7 +178,7 @@ Triggered when a player was completely loaded (follows after `PROTOCOLS.NEW_CONN
   type: String
 * `type`: the type of the session. 1: practice / 2: qualify / 3: race
   type: Number
-* `time`: limited time of the session in ms
+* `time`: limited time of the session in mins
   type: Number
 * `laps`: the number of limited laps of the session
   type: Number
