@@ -40,12 +40,12 @@ Expected output:
 
 Detailed Description
 -------------
-##### PROTOCOLS.NEW_SESSION
+#### PROTOCOLS.NEW_SESSION
 * Data format is same to `PROTOCOLS.SESSION_INFO`
 
 Triggered when new session is created.
 
-##### PROTOCOLS.NEW_CONNECTION
+#### PROTOCOLS.NEW_CONNECTION
 * `name`: driver's nickname
   type: String
 * `guid`: driver's guid
@@ -59,12 +59,12 @@ Triggered when new session is created.
 
 Triggered when someone tries to connect the server.
 
-##### PROTOCOLS.CONNECTION_CLOSED
+#### PROTOCOLS.CONNECTION_CLOSED
 * Data format is same to `PROTOCOLS.NEW_CONNECTION`
 
 Triggered when someone left the server.
 
-##### PROTOCOLS.CAR_UPDATE
+#### PROTOCOLS.CAR_UPDATE
 * `car_id`: car id
   type: Number
 * `position`: car's position in the track
@@ -81,7 +81,7 @@ Triggered when someone left the server.
 Triggered when the server receives car realtime updates.
 Only received when the server enabled realtime report.
 
-##### PROTOCOLS.CAR_INFO
+#### PROTOCOLS.CAR_INFO
 * `car_id`: car id
   type: Number
 * `conencted`: if the car is connected to the server
@@ -100,13 +100,13 @@ Only received when the server enabled realtime report.
 Triggered when the server sent car information.
 Only received after `app.getCarInfo()` was called.
 
-##### PROTOCOLS.END_SESSION
+#### PROTOCOLS.END_SESSION
 * `filename`: session report file's route
   type: String
 
 Triggered when current session ended.
 
-##### PROTOCOLS.LAP_COMPLETED
+#### PROTOCOLS.LAP_COMPLETED
 * `car_id`: car id
   type: Number
 * `laptime`: laptime in `ms`
@@ -138,14 +138,14 @@ Triggered when a player completed the lap.
 The data in `{}` below is repeated as much as the number of cars on leaderboard.
 
 
-##### PROTOCOLS.VERSION
+#### PROTOCOLS.VERSION
 * `version`: the udp protocol version
   type: Number
 
 Triggered when startup.
 Shows UDP plugin protocol version.
 
-##### PROTOCOLS.CHAT
+#### PROTOCOLS.CHAT
 * `car_id`: car id
   type: Number
 * `message`: chat message content
@@ -153,13 +153,13 @@ Shows UDP plugin protocol version.
 
 Triggered when a player sent a chat.
 
-##### PROTOCOLS.CLIENT_LOADED
+#### PROTOCOLS.CLIENT_LOADED
 * `car_id`: car id
   type: Number
 
 Triggered when a player was completely loaded (follows after `PROTOCOLS.NEW_CONNECTION`)
 
-##### PROTOCOLS.SESSION_INFO
+#### PROTOCOLS.SESSION_INFO
 * `version`: udp protocol version
   type: Number
 * `sess_index`: index of requested session
@@ -197,13 +197,13 @@ Triggered when the server sent session information.
 Only received after `app.getSessionInfo()` was called.
 Session length can be limited by either `time` or `laps`.
 
-##### PROTOCOLS.ERROR
+#### PROTOCOLS.ERROR
 * `message`: error message
   type: String
 
 Triggered when server got an error (Not certain and might be wrong)
 
-##### PROTOCOLS.CLIENT_EVENT
+#### PROTOCOLS.CLIENT_EVENT
 * `type`: type of the accident. Can be either `PROTOCOL.CE_COLLISION_WITH_CAR` or `PROTOCOL.CE_COLLISION_WITH_ENV`
   type: Number
 * `car_id`: car id who is responsible for the accident
