@@ -89,9 +89,9 @@ Detailed Description
 
 #### PROTOCOLS.LAP_COMPLETED
 * `car_id`: car id / `Number`
-* `laptime`: laptime in `ms` / `Number`
+* `laptime`: laptime in milliseconds / `Number`
 * `cuts`: how many cuts the driver did in the lap / `Number`
-* `cars`: all cars in the leaderboard. / `Object`  
+* `cars`: all cars in the leaderboard / `Object`  
   example:
   ```js
   {
@@ -135,14 +135,14 @@ Detailed Description
 * `version`: udp protocol version / `Number`
 * `sess_index`: index of requested session / `Number`
 * `current_sess_index`: index of current session / `Number`
-* `sess_count`: the `Number` of sessions in the server / `Number`
+* `sess_count`: the number of sessions in the server / `Number`
 * `server_name`: name of the server / `String`
 * `track`: name of the track / `String`
 * `track_config`: configuration of the track / `String`
 * `name`: the name of the session / `String`
 * `type`: the type of the session. 1: practice / 2: qualify / 3: race / `Number`
 * `time`: limited time of the session in mins / `Number`
-* `laps`: the `Number` of limited laps of the session / `Number`
+* `laps`: the number of limited laps of the session / `Number`
 * `wait_time`: time for waiting the later drivers to complete session / `Number`
 * `ambient_temp`: ambient temperature / `Number`
 * `road_temp`: road temperature / `Number`
