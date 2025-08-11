@@ -43,78 +43,55 @@ Detailed Description
 #### PROTOCOLS.NEW_SESSION
 * Data format is same to `PROTOCOLS.SESSION_INFO`
 
-Triggered when new session is created.
+> Triggered when new session is created.  
 
 #### PROTOCOLS.NEW_CONNECTION
-* `name`: driver's nickname
-  type: String
-* `guid`: driver's guid
-  type: String
-* `car_id`: car id
-  type: Number
-* `car_model`: car model
-  type: String
-* `car_skin`: car skin
-  type: String
+* `name`: driver's nickname / `String`
+* `guid`: driver's guid / `String`
+* `car_id`: car id / `Number`
+* `car_model`: car model / `String`
+* `car_skin`: car skin / `String`
 
-Triggered when someone tries to connect the server.
+> Triggered when someone tries to connect the server.
 
 #### PROTOCOLS.CONNECTION_CLOSED
 * Data format is same to `PROTOCOLS.NEW_CONNECTION`
 
-Triggered when someone left the server.
+> Triggered when someone left the server.
 
 #### PROTOCOLS.CAR_UPDATE
-* `car_id`: car id
-  type: Number
-* `position`: car's position in the track
-  type: server.vector3f
-* `velocity`: car's speed in 3 directions
-  type: server.vector3f
-* `gear`: car's gear
-  type: Number
-* `rpm`: car's rpm
-  type: Number
-* `normalized_spline_pos`: No idea what it is
-  type: Number
+* `car_id`: car id / `Number`
+* `position`: car's position in the track / `server.vector3f`
+* `velocity`: car's speed in 3 directions / `server.vector3f`
+* `gear`: car's gear / `Number`
+* `rpm`: car's rpm / `Number`
+* `normalized_spline_pos`: No idea what it is / `Number`
 
-Triggered when the server receives car realtime updates.
-Only received when the server enabled realtime report.
+> Triggered when the server receives car realtime updates.  
+> Only received when the server enabled realtime report.
 
 #### PROTOCOLS.CAR_INFO
-* `car_id`: car id
-  type: Number
-* `conencted`: if the car is connected to the server
-  type: Boolean
-* `model`: car model
-  type: String
-* `skin`: car skin
-  type: String
-* `name`: driver's nickname
-  type: String
-* `team`: driver's team
-  type: String
-* `guid`: driver's guid
-  type: String
+* `car_id`: car id / `Number`
+* `conencted`: if the car is connected to the server / ``Boolean``
+* `model`: car model / `String`
+* `skin`: car skin / `String`
+* `name`: driver's nickname / `String`
+* `team`: driver's team / `String`
+* `guid`: driver's guid / `String`
 
-Triggered when the server sent car information.
-Only received after `app.getCarInfo()` was called.
+> Triggered when the server sent car information.  
+> Only received after `app.getCarInfo()` was called.
 
 #### PROTOCOLS.END_SESSION
-* `filename`: session report file's route
-  type: String
+* `filename`: session report file's route / `String`
 
-Triggered when current session ended.
+> Triggered when current session ended.
 
 #### PROTOCOLS.LAP_COMPLETED
-* `car_id`: car id
-  type: Number
-* `laptime`: laptime in `ms`
-  type: Number
-* `cuts`: how many cuts the driver did in the lap
-  type: Number
-* `cars`: all cars in the leaderboard.
-  type: Object
+* `car_id`: car id / `Number`
+* `laptime`: laptime in `ms` / `Number`
+* `cuts`: how many cuts the driver did in the lap / `Number`
+* `cars`: all cars in the leaderboard. / `Object`  
   example:
   ```js
   {
@@ -131,90 +108,62 @@ Triggered when current session ended.
     ...
   }
   ```
-* `grip_level`: track's grip level in percent
-  type: Number
+* `grip_level`: track's grip level in percent / `Number`
 
-Triggered when a player completed the lap.
-The data in `{}` below is repeated as much as the number of cars on leaderboard.
+> Triggered when a player completed the lap.  
+> The data in `{}` below is repeated as much as the `Number` of cars on leaderboard.
 
 
 #### PROTOCOLS.VERSION
-* `version`: the udp protocol version
-  type: Number
+* `version`: the udp protocol version / `Number`
 
-Triggered when startup.
-Shows UDP plugin protocol version.
+> Triggered when startup.  
+> Shows UDP plugin protocol version.
 
 #### PROTOCOLS.CHAT
-* `car_id`: car id
-  type: Number
-* `message`: chat message content
-  type: String
+* `car_id`: car id / `Number`
+* `message`: chat message content / `String`
 
-Triggered when a player sent a chat.
+> Triggered when a player sent a chat.
 
 #### PROTOCOLS.CLIENT_LOADED
-* `car_id`: car id
-  type: Number
+* `car_id`: car id / `Number`
 
-Triggered when a player was completely loaded (follows after `PROTOCOLS.NEW_CONNECTION`)
+> Triggered when a player was completely loaded (follows after `PROTOCOLS.NEW_CONNECTION`)
 
 #### PROTOCOLS.SESSION_INFO
-* `version`: udp protocol version
-  type: Number
-* `sess_index`: index of requested session
-  type: Number
-* `current_sess_index`: index of current session
-  type: Number
-* `sess_count`: the number of sessions in the server
-  type: Number
-* `server_name`: name of the server
-  type: String
-* `track`: name of the track
-  type: String
-* `track_config`: configuration of the track
-  type: String
-* `name`: the name of the session
-  type: String
-* `type`: the type of the session. 1: practice / 2: qualify / 3: race
-  type: Number
-* `time`: limited time of the session in mins
-  type: Number
-* `laps`: the number of limited laps of the session
-  type: Number
-* `wait_time`: time for waiting the later drivers to complete session
-  type: Number
-* `ambient_temp`: ambient temperature
-  type: Number
-* `road_temp`: road temperature
-  type: Number
-* `weather`: weather of the session
-  type: String
-* `elapsed_time`: time from the start in ms. Might be negative for races with `wait_time`
-  type: Number
+* `version`: udp protocol version / `Number`
+* `sess_index`: index of requested session / `Number`
+* `current_sess_index`: index of current session / `Number`
+* `sess_count`: the `Number` of sessions in the server / `Number`
+* `server_name`: name of the server / `String`
+* `track`: name of the track / `String`
+* `track_config`: configuration of the track / `String`
+* `name`: the name of the session / `String`
+* `type`: the type of the session. 1: practice / 2: qualify / 3: race / `Number`
+* `time`: limited time of the session in mins / `Number`
+* `laps`: the `Number` of limited laps of the session / `Number`
+* `wait_time`: time for waiting the later drivers to complete session / `Number`
+* `ambient_temp`: ambient temperature / `Number`
+* `road_temp`: road temperature / `Number`
+* `weather`: weather of the session / `String`
+* `elapsed_time`: time from the start in ms. Might be negative for races with `wait_time` / `Number`
 
-Triggered when the server sent session information.
-Only received after `app.getSessionInfo()` was called.
-Session length can be limited by either `time` or `laps`.
+> Triggered when the server sent session information.  
+> Only received after `app.getSessionInfo()` was called.  
+> Session length can be limited by either `time` or `laps`.
 
 #### PROTOCOLS.ERROR
-* `message`: error message
-  type: String
+* `message`: error message / `String`
 
-Triggered when server got an error (Not certain and might be wrong)
+> Triggered when server got an error (Not certain and might be wrong)
 
 #### PROTOCOLS.CLIENT_EVENT
-* `type`: type of the accident. Can be either `PROTOCOL.CE_COLLISION_WITH_CAR` or `PROTOCOL.CE_COLLISION_WITH_ENV`
-  type: Number
-* `car_id`: car id who is responsible for the accident
-  type: Number
-* `other_car_id`: car id who was crashed. Undefined if the accident was between driver and environment
-  type: Number
-* `speed`: speed at the moment of the accident
-  type: Number
-* `world_position`: absolute position of the car
-  type: server.vector3f
-* `rel_position`: relative position of the car
-  type: server.vector3f
+* `type`: type of the accident. Can be either `PROTOCOL.CE_COLLISION_WITH_CAR` or `PROTOCOL.CE_COLLISION_WITH_ENV` / `Number`
+* `car_id`: car id who is responsible for the accident / `Number`
+* `other_car_id`: car id who was crashed. Undefined if the accident was between driver and environment / `Number`
+* `speed`: speed at the moment of the accident / `Number`
+* `world_position`: absolute position of the car / `server.vector3f`
+* `rel_position`: relative position of the car / `server.vector3f`
 
-Triggered when player collided with other car or environment.
+> Triggered when player collided with other car or environment.
